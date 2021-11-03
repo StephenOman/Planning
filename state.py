@@ -1,11 +1,15 @@
 from action import Action
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class State():
     def __init__(self, location) -> None:
         self.location = location
 
-    def is_applicable(self, act: Action):
-        new_loc = act.get_effect(self.location)
+    def is_applicable(self, act: Action, map):
+        new_loc = act.get_effect(self.location, map)
 
         # check the agent would be able to move
         if new_loc == self.location:
@@ -13,8 +17,8 @@ class State():
         else:
             return True
 
-    def apply(self, act: Action):
-        return State(act.get_effect(self.location))
+    def apply(self, act: Action, map):
+        return State(act.get_effect(self.location, map))
 
 
 if __name__ == '__main__':
