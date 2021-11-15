@@ -39,15 +39,6 @@ class Action():
 
         return (vertical, horizontal)
 
-if __name__ == '__main__':
-    actions = [Action('N', (-1, 0)), Action('S', (1, 0)), Action('E', (0, 1)), Action('W', (0, -1))]
-
-    current_state = (10,10)
-
-    print('Loc:', current_state)
-    for act in actions:
-        print(act.name, act.get_effect(current_state))
-
 
 
 
