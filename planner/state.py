@@ -3,13 +3,14 @@ from abc import ABC, abstractmethod
 # Abstract base class for states
 
 class State(ABC):
-    def __init__(self, state_vars):
+    def __init__(self, state_vars) -> None:
         """
         The state_vars contain the state variables that you want to
         store to represent the state in your domain.
 
         These should be represented as key, value pairs in a dictionary
         """
+        super().__init__()
         self.state_vars = state_vars
 
     @abstractmethod
@@ -29,3 +30,11 @@ class State(ABC):
         than updating the existing one
         """
         pass
+
+    def __eq__(self, o: object) -> bool:
+        for var in self.state_vars.keys():
+            if var not in o.state_vars.keys():
+                return False
+            if self.state_vars[var] != o.state_vars[var]:
+                return False
+        return True
